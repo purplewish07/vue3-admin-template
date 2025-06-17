@@ -10,8 +10,7 @@
     "eslint": "eslint  --ext .vue,.js,.ts,.jsx,.tsx --fix",
     "eslint-lint": "eslint --ext .vue,.js,.ts,.jsx,.tsx --fix .",
     "prettier": "prettier --write \"./**/*.{html,vue,ts,js,json,md}\"",
-    "prettier-lint": "prettier --write \"./**/*.{html,vue,ts,js,json,md}\" .",
-    "prepare": "husky install"
+    "prettier-lint": "prettier --write \"./**/*.{html,vue,ts,js,json,md}\" ."
   },
   "dependencies": {
     "@toast-ui/editor": "^3.2.2",
@@ -49,7 +48,6 @@
     "eslint-plugin-vue": "^10.0.0",
     "fast-glob": "^3.3.3",
     "globals": "^16.0.0",
-    "husky": "^9.1.7",
     "path-browserify": "^1.0.1",
     "prettier": "^3.5.3",
     "sass": "^1.86.1",
@@ -60,11 +58,6 @@
     "vite-plugin-inspect": "^11.0.0",
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-plugin-vue-devtools": "^7.7.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.{vue,js,ts,jsx,tsx}": [
