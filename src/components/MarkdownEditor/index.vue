@@ -5,7 +5,7 @@
 <script setup>
 import Editor from '@toast-ui/editor'
 import '@toast-ui/editor/dist/toastui-editor.css'
-import '@toast-ui/editor/dist/i18n/zhtw'
+import '@toast-ui/editor/dist/i18n/zh-tw'
 import { reactive, toRefs, onMounted, computed, watch, onUnmounted } from 'vue'
 import { ElMessage } from 'element-plus'
 
