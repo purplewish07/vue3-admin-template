@@ -82,5 +82,6 @@
       "vue-demi",
       "vue-echarts"
     ]
-  }
+  },
+  "license": "MIT"
 }

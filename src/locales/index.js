@@ -6,8 +6,8 @@ import en from './en'
 import zhTW from './zhtw'
 
 export const messages = {
-  'zhtw': zhTW,
-  en
+  '繁體中文': zhTW,
+  'English':en
 }
 
 const i18n = createI18n({
