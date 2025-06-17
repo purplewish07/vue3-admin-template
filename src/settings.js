@@ -15,7 +15,7 @@ export default {
   // 是否顯示Logo
   menuLogo: true,
 
-  locale: 'zhtw',
+  locale: 'zhTW',
 
   /**
    * 側邊欄菜單

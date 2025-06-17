@@ -5,14 +5,14 @@
       <template #dropdown>
         <el-dropdown-menu>
           <el-dropdown-menu>
-            <el-dropdown-item
-              v-for="item of localeOptions"
-              :key="item"
-              :disabled="locale === item"
-              :command="item"
-            >
-              {{ item }}
-            </el-dropdown-item>
+          <el-dropdown-item
+            v-for="item in localeOptions"
+            :key="item.key"
+            :disabled="locale === item.key"
+            :command="item.key"
+          >
+            {{ item.label }}
+          </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown-menu>
       </template>
@@ -30,7 +30,10 @@ import { messages } from '@/locales/index'
 const i18n = useI18n()
 
 const state = reactive({
-  localeOptions: Object.keys(messages),
+  localeOptions: Object.keys(messages).map(key => ({
+    key,
+    label: key === 'zhTW' ? '繁體中文' : key === 'en' ? 'English' : key
+  })),
   refDropdown: null
 })
 const { localeOptions, refDropdown } = toRefs(state)
