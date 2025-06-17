@@ -5,10 +5,10 @@ export const base64ToFile = (
 ) => {
   try {
     if (!base64Data) {
-      throw new Error('base64Data 不能为空')
+      throw new Error('base64Data 不能為空')
     }
 
-    // 将 Base64 字符串转换为 Uint8Array
+    // 將 Base64 字符串轉換為 Uint8Array
     const binaryData = atob(base64Data)
     const arrayBuffer = new ArrayBuffer(binaryData.length)
     const uint8Array = new Uint8Array(arrayBuffer)
@@ -17,14 +17,14 @@ export const base64ToFile = (
       uint8Array[i] = binaryData.charCodeAt(i)
     }
 
-    // 创建 Blob 对象
+    // 創建 Blob 對像
     const blob = new Blob([uint8Array], { type: mimeType })
 
-    // 创建 File 对象
+    // 創建 File 對像
     const file = new File([blob], fileName, { type: mimeType })
     return file
   } catch (error) {
-    console.error('Base64转File失败:', error)
+    console.error('Base64轉File失敗:', error)
     throw error
   }
 }

@@ -1,8 +1,8 @@
 <template>
   <div class="app-container role-container">
     <div class="feature-wrapper">
-      <el-button v-hasPermission="1010" type="primary">添加用户</el-button>
-      <el-button type="primary" @click="getSelectedKeys">获取选中项</el-button>
+      <el-button v-hasPermission="1010" type="primary">添加用戶</el-button>
+      <el-button type="primary" @click="getSelectedKeys">獲取選中項</el-button>
     </div>
     <el-table :data="tableData" style="width: 100%" border>
       <el-table-column fixed prop="date" label="Date" width="150" />
@@ -41,7 +41,7 @@ const tableData = [
 
 const getSelectedKeys = () => {
   const keys = permissionTreeRef.value?.getCheckedKeys()
-  console.log('选中的节点:', keys)
+  console.log('選中的節點:', keys)
 }
 </script>
 

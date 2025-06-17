@@ -50,10 +50,10 @@ const autoRefresh = () => {
     if (willUpdate) {
       setTimeout(() => {
         ElMessageBox.confirm(
-          '检测到页面有内容更新，为了功能的正常使用，是否立即刷新？',
+          '檢測到頁面有內容更新，為了功能的正常使用，是否立即刷新？',
           '更新提示',
           {
-            confirmButtonText: '确认',
+            confirmButtonText: '確認',
             showCancelButton: false,
             type: 'warning'
           }

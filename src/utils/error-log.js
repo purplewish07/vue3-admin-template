@@ -6,7 +6,7 @@ import { useErrorLogStore } from '@/store/errorLog'
 const { errorLog } = settings
 
 /**
- * @method checkNeed 检查需要日志
+ * @method checkNeed 檢查需要日誌
  * @returns
  */
 const checkNeed = () => {
@@ -30,13 +30,13 @@ export default {
 
       app.config.errorHandler = (err, vm, info) => {
         console.log(
-          '🚀 ~ file: error-log.js:32 ~ install ~ err, vm, info:',
+          'ߚ࠾ file: error-log.js:32 ~ install ~ err, vm, info:',
           err,
           vm,
           info
         )
 
-        // `info` 是 Vue 特定的错误信息，比如错误所在的生命周期钩子
+        // `info` 是 Vue 特定的錯誤信息，比如錯誤所在的生命週期鉤子
         nextTick(() => {
           errorLogStore.addErrorLog({
             err,

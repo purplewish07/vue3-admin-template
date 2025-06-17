@@ -40,12 +40,12 @@ import AppLink from './Link'
 import Item from './Item'
 import { reactive, toRefs } from 'vue'
 const props = defineProps({
-  //每一个router Item
+  //每一個router Item
   item: {
     type: Object,
     required: true
   },
-  //基础路径，用于拼接
+  //基礎路徑，用於拼接
   basePath: {
     type: String,
     default: ''
@@ -84,7 +84,7 @@ const hasOneShowingChild = (children = [], parent) => {
 }
 
 /**
- * @method resolvePath 处理路径
+ * @method resolvePath 處理路徑
  * @param {*} routePath
  */
 const resolvePath = (routePath) => {

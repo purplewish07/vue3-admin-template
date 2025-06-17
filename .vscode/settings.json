@@ -1,12 +1,12 @@
 {
-    // 开启eslint自动修复
+    // 開啟eslint自動修復
     "editor.codeActionsOnSave": {
       "source.fixAll": "never",
       "source.fixAll.eslint": "explicit"
     },
-    // 保存的时候自动格式化
+    // 保存的時候自動格式化
     "editor.formatOnSave": true,
-    // 默认格式化工具选择prettier-eslint
+    // 默認格式化工具選擇prettier-eslint
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
     "[jsonc]": {
         "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"

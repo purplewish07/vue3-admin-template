@@ -10,7 +10,7 @@
       some new features (like web font and image support) added.
     </aside>
     <el-button @click="handleDownloadJpeg" type="primary"
-      >获取JpegFile</el-button
+      >獲取JpegFile</el-button
     >
   </div>
 </template>

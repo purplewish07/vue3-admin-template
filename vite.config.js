@@ -17,7 +17,7 @@ export default (mode) => {
       open: true,
       proxy: {
         '/api': {
-          target: 'http://zhihuifanqiechaodan.com', // 生产环境
+          target: 'http://zhihuifanqiechaodan.com', // 生產環境
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, '')
         },
@@ -45,13 +45,13 @@ export default (mode) => {
       vueDevTools(),
       Inspect(),
       createSvgIconsPlugin({
-        // 指定需要缓存的图标文件夹
+        // 指定需要緩存的圖標文件夾
         iconDirs: [fileURLToPath(new URL('./src/icons', import.meta.url))],
         // 指定symbolId格式
         symbolId: 'icon-[dir]-[name]'
 
         /**
-         * 自定义插入位置
+         * 自定義插入位置
          * @default: body-last
          */
         // inject?: 'body-last' | 'body-first'

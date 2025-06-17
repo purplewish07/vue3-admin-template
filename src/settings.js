@@ -2,39 +2,39 @@ export default {
   /**
    * 全局
    */
-  // 页面标题
+  // 頁面標題
   title: 'Vue3 Admin Template',
-  // 布局方式 Classic 经典布局 Default 默认布局 Streamline 精简布局
+  // 佈局方式 Classic 經典佈局 Default 默認佈局 Streamline 精簡佈局
   layoutMode: 'Default',
-  // 默认全局尺寸, 可选值 large / default /small
+  // 默認全局尺寸, 可選值 large / default /small
   size: 'default',
   // 是否展示tagsView
   tagsView: false,
-  // 全局设置状态
+  // 全局設置狀態
   showSettings: false,
-  // 是否显示Logo
+  // 是否顯示Logo
   menuLogo: true,
 
-  locale: 'zh-cn',
+  locale: 'zhtw',
 
   /**
-   * 侧边栏菜单
+   * 側邊欄菜單
    */
-  //菜单宽度(展开时)，单位px
+  //菜單寬度(展開時)，單位px
   menuWidth: 210,
-  // 是否水平折叠收起菜单
+  // 是否水平折疊收起菜單
   menuCollapse: false,
   // 背景色
   menuBackgroundColor: '#304156',
-  // 文字颜色
+  // 文字顏色
   menuTextColor: '#bfcbd9',
-  // 激活项背景色
+  // 激活項背景色
   menuActiveBackgroundColor: '#304156',
-  // 激活项文字色
+  // 激活項文字色
   menuActiveTextColor: '#409EFF',
-  // 菜单项默认图标
+  // 菜單項默認圖標
   menuDefaultIcon: 'el-icon-Minus',
-  // 是否只保持一个子菜单的展开(手风琴)
+  // 是否只保持一個子菜單的展開(手風琴)
   menuUniqueOpened: false,
   // The default is only used in the production env，If you want to also use it in dev, you can pass ['production', 'development']
   errorLog: ['production', 'localhost'],

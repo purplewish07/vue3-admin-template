@@ -17,7 +17,7 @@
       <el-button
         @click="clipboardHook.handleClipboard($event, context)"
         type="success"
-        >复制到剪切板</el-button
+        >複製到剪切板</el-button
       >
     </div>
   </div>
@@ -31,7 +31,7 @@ const clipboardHook = useClipboardHook()
 
 const state = reactive({
   context:
-    'Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga.'
+    'Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra la , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Me faiz elementum girarzis, nisi eros vermeio, in elementis me pra quem e amistosis quis leo. Manduma pindureta quium dia nois paga.'
 })
 
 const { context } = toRefs(state)

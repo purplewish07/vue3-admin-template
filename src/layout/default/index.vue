@@ -19,7 +19,7 @@ import { useSettingsStore } from '@/store/settings'
 import { computed } from 'vue'
 
 const settingsStore = useSettingsStore()
-// 侧边栏宽度 + 20偏差
+// 側邊欄寬度 + 20偏差
 const menuWidth = computed(() =>
   settingsStore.menuCollapse
     ? 'calc(64px + 20px)'

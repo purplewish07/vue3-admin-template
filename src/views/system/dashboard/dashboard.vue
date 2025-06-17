@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard-container">说明</div>
+  <div class="dashboard-container">說明</div>
 </template>
 
 <script setup></script>

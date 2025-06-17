@@ -51,7 +51,7 @@ const menuWidth = computed({
 const menuHeight = computed({
   get() {
     let menuHeight = ''
-    // 默认布局
+    // 默認佈局
     switch (layoutMode.value) {
       case 'Default':
         // logo 50

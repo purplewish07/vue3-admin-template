@@ -21,7 +21,7 @@ import { computed } from 'vue'
 
 const settingsStore = useSettingsStore()
 
-// 侧边栏宽度
+// 側邊欄寬度
 const menuWidth = computed(() =>
   settingsStore.menuCollapse ? '64px' : `${settingsStore.menuWidth}px`
 )

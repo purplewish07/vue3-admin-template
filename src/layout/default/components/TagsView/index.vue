@@ -99,7 +99,7 @@ const filterAffixTags = (routeList, basePath = '/') => {
 }
 
 /**
- * @method initTags 初始化tags, 将路由中设置 affix: true 的路由固定展示在TagView中
+ * @method initTags 初始化tags, 將路由中設置 affix: true 的路由固定展示在TagView中
  */
 const initTags = () => {
   state.affixTags = filterAffixTags(routes.value)

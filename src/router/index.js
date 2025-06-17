@@ -4,54 +4,54 @@ import { usePermissionStore } from '@/store/permission'
 import exampleRouter from './modules/example'
 
 /**
- * 当设置 true 的时候该路由不会在侧边栏出现 如401，login等页面，或者如一些编辑页面/edit/1
+ * 當設置 true 的時候該路由不會在側邊欄出現 如401，login等頁面，或者如一些編輯頁面/edit/1
  * 
  * hidden: true
  * 
- * 当你一个路由下面的 children 声明的路由大于1个时，自动会变成嵌套的模式--如组件页面
- * 只有一个时，会将那个子路由当做根路由显示在侧边栏--如引导页面
- * 若你想不管路由下面的 children 声明的个数都显示你的根路由
- * 你可以设置 alwaysShow: true，这样它就会忽略之前定义的规则，一直显示根路由
+ * 當你一個路由下面的 children 聲明的路由大於1個時，自動會變成嵌套的模式--如組件頁面
+ * 只有一個時，會將那個子路由當做根路由顯示在側邊欄--如引導頁面
+ * 若你想不管路由下面的 children 聲明的個數都顯示你的根路由
+ * 你可以設置 alwaysShow: true，這樣它就會忽略之前定義的規則，一直顯示根路由
  * 
  * alwaysShow: true
  * 
- * 因为路由的设计模式，只能当路由为目录时，才可设置此选项，或者当当前路由只有一个菜单的时候，会自动生成外层目录，如果设置了noRedirect，则不会在breadcrumb中重定向
+ * 因為路由的設計模式，只能當路由為目錄時，才可設置此選項，或者當當前路由只有一個菜單的時候，會自動生成外層目錄，如果設置了noRedirect，則不會在breadcrumb中重定向
  * 
  * redirect: 'noRedirect'
  * 
- * 用于退出登录时清空动态添加的路由信息，路由的name字段必须为路由的文件名，缓存页面时需要
- * 在 3.2.34 或以上的版本中，使用 <script setup> 的单文件组件会自动根据文件名生成对应的 name 选项，无需再页面上手动声明name。
- * name必须和你的文件名保持一致，否则会导致不缓存, 所以文件名不要使用index
+ * 用於退出登錄時清空動態添加的路由信息，路由的name字段必須為路由的文件名，緩存頁面時需要
+ * 在 3.2.34 或以上的版本中，使用 <script setup> 的單文件組件會自動根據文件名生成對應的 name 選項，無需再頁面上手動聲明name。
+ * name必須和你的文件名保持一致，否則會導致不緩存, 所以文件名不要使用index
  * 
  * name:'router-name'
  * 
  * meta : {
-    设置该路由在侧边栏和面包屑中展示的名字
+    設置該路由在側邊欄和麵包屑中展示的名字
     title: 'title' 
     
-    设置该路由的图标
+    設置該路由的圖標
     icon: 'menu'
 
-    如果设置为true，则不会被 <keep-alive> 缓存(默认 true)
+    如果設置為true，則不會被 <keep-alive> 緩存(默認 true)
     noCache: true
 
-    如果设置为true，它则会固定在tags-view中(默认 false, 只在经典布局中展示)
+    如果設置為true，它則會固定在tags-view中(默認 false, 只在經典佈局中展示)
     affix: false               
 
-    如果设置为false，则不会在breadcrumb面包屑中显示(默认 true，只在经典布局中展示)
+    如果設置為false，則不會在breadcrumb麵包屑中顯示(默認 true，只在經典佈局中展示)
     breadcrumb: false            
 
-    当路由设置了该属性，则会高亮相对应的侧边栏。
-    这在某些场景非常有用，比如：一个文章的列表页路由为：/article/list
-    点击文章进入文章详情页，这时候路由为/article/1，但你想在侧边栏高亮文章列表的路由，就可以进行如下设置
-    activeMenu: '/example/list'如果设置了path，侧边栏会高亮显示你设置的路径
+    當路由設置了該屬性，則會高亮相對應的側邊欄。
+    這在某些場景非常有用，比如：一個文章的列表頁路由為：/article/list
+    點擊文章進入文章詳情頁，這時候路由為/article/1，但你想在側邊欄高亮文章列表的路由，就可以進行如下設置
+    activeMenu: '/example/list'如果設置了path，側邊欄會高亮顯示你設置的路徑
   }
  */
 
 /**
- * 代表那些不需要动态判断权限的路由，如登录页、404、等通用页面。
- * 没有权限要求的页面
- * 所有角色都可以访问
+ * 代表那些不需要動態判斷權限的路由，如登錄頁、404、等通用頁面。
+ * 沒有權限要求的頁面
+ * 所有角色都可以訪問
  */
 export const constantRoutes = [
   {
@@ -92,7 +92,7 @@ export const constantRoutes = [
 ]
 
 /**
- * 有权限要求的页面
+ * 有權限要求的頁面
  */
 export const asyncRoutes = [
   {
@@ -109,7 +109,7 @@ export const asyncRoutes = [
           title: 'User',
           icon: 'dashboard',
           pageId: 101,
-          buttonIds: [{ buttonId: 1010, buttonText: '添加用户' }]
+          buttonIds: [{ buttonId: 1010, buttonText: '添加用戶' }]
         }
       },
       {
@@ -121,9 +121,9 @@ export const asyncRoutes = [
           icon: 'dashboard',
           pageId: 102,
           buttonIds: [
-            { buttonId: 1020, buttonText: '创建' },
-            { buttonId: 1021, buttonText: '编辑' },
-            { buttonId: 1022, buttonText: '删除' }
+            { buttonId: 1020, buttonText: '創建' },
+            { buttonId: 1021, buttonText: '編輯' },
+            { buttonId: 1022, buttonText: '刪除' }
           ]
         }
       }

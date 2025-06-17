@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 
-// fix: 自动导入函数式组件样式没有自动导入
+// fix: 自動導入函數式組件樣式沒有自動導入
 import 'element-plus/theme-chalk/el-message-box.css'
 import 'element-plus/theme-chalk/el-message.css'
 

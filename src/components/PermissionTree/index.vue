@@ -25,9 +25,9 @@ const treeRef = ref(null)
 
 const treeData = computed(() => transformRoutesToTree(asyncRoutes))
 /**
- * 将路由数组转换为树形结构
- * @param {Array} routes 路由数组
- * @returns {Array} 树形结构
+ * 將路由數組轉換為樹形結構
+ * @param {Array} routes 路由數組
+ * @returns {Array} 樹形結構
  */
  const transformRoutesToTree = (routes) => {
   return routes
@@ -39,7 +39,7 @@ const treeData = computed(() => transformRoutesToTree(asyncRoutes))
         children: []
       }
 
-      // 处理按钮权限
+      // 處理按鈕權限
       if (route.meta.buttonIds) {
         node.children = route.meta.buttonIds.map((button) => ({
           id: button.buttonId,
@@ -47,7 +47,7 @@ const treeData = computed(() => transformRoutesToTree(asyncRoutes))
         }))
       }
 
-      // 递归处理子路由
+      // 遞歸處理子路由
       if (route.children) {
         const childNodes = transformRoutesToTree(route.children)
         if (childNodes.length > 0) {
@@ -59,7 +59,7 @@ const treeData = computed(() => transformRoutesToTree(asyncRoutes))
     })
 }
 
-// 暴露方法给父组件
+// 暴露方法給父組件
 defineExpose({
   getCheckedKeys: () => treeRef.value?.getCheckedKeys()
 })

@@ -5,7 +5,7 @@
 <script setup>
 import Editor from '@toast-ui/editor'
 import '@toast-ui/editor/dist/toastui-editor.css'
-import '@toast-ui/editor/dist/i18n/zh-cn'
+import '@toast-ui/editor/dist/i18n/zhtw'
 import { reactive, toRefs, onMounted, computed, watch, onUnmounted } from 'vue'
 import { ElMessage } from 'element-plus'
 
@@ -23,7 +23,7 @@ const props = defineProps({
   },
   language: {
     type: String,
-    default: 'zh-CN'
+    default: 'zhtw'
   }
 })
 
@@ -70,7 +70,7 @@ const getMarkdown = () => {
   if (state.editor.isMarkdownMode()) {
     return state.editor.getMarkdown()
   } else {
-    ElMessage.error('当前模式不支持获取Markdown')
+    ElMessage.error('當前模式不支持獲取Markdown')
   }
 }
 
@@ -78,7 +78,7 @@ const getHTML = () => {
   if (state.editor.isWysiwygMode()) {
     return state.editor.getHTML()
   } else {
-    ElMessage.error('当前模式不支持获取HTML')
+    ElMessage.error('當前模式不支持獲取HTML')
   }
 }
 

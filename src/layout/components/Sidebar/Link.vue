@@ -15,13 +15,13 @@ const props = defineProps({
   }
 })
 
-// 是否外部链接
+// 是否外部鏈接
 const isExternal = computed(() => utilsIsExternal(props.to))
 
-// 标签类型
+// 標籤類型
 const type = computed(() => (isExternal.value ? 'a' : 'router-link'))
 
-// 标签属性
+// 標籤屬性
 const linkProps = () => {
   if (isExternal.value) {
     return {

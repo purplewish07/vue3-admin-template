@@ -8,7 +8,7 @@
       <br />
       ⚠️ Now when you are using Vue 3.x, please upgrade qrcode.vue to 3.x
       <br />
-      🔒 if you are using Vue 2.x, please keep using version 1.x;
+      ߔ⠩f you are using Vue 2.x, please keep using version 1.x;
     </aside>
     <QrcodeVue :value="qrcode" />
   </div>

@@ -3,10 +3,10 @@ import settings from '@/settings'
 import { getCookieItem } from '@/utils/storage'
 
 import en from './en'
-import zhCn from './zh-cn'
+import zhTW from './zhtw'
 
 export const messages = {
-  'zh-cn': zhCn,
+  'zhtw': zhTW,
   en
 }
 

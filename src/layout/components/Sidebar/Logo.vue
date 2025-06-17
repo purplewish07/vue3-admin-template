@@ -32,7 +32,7 @@ const settingsStore = useSettingsStore()
 const menuBackgroundColor = computed(() => settingsStore.menuBackgroundColor)
 
 defineProps({
-  // 侧边栏展开状态
+  // 側邊欄展開狀態
   menuCollapse: {
     type: Boolean,
     required: true

@@ -9,8 +9,8 @@
       Paul Bakaus and has been completely rewritten, with some bugs fixed and
       some new features (like web font and image support) added.
     </aside>
-    <el-button @click="handleDownloadJpeg" type="primary">下载 jpeg</el-button>
-    <el-button @click="handleDownloadPng" type="primary">下载 Png</el-button>
+    <el-button @click="handleDownloadJpeg" type="primary">下載 jpeg</el-button>
+    <el-button @click="handleDownloadPng" type="primary">下載 Png</el-button>
   </div>
 </template>
 

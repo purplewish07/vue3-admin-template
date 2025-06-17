@@ -3,10 +3,10 @@ import html2canvas from 'html2canvas'
 
 /**
  * @typedef {Object} ImageOptions
- * @property {boolean} [useCORS=true] - 是否允许跨域
- * @property {number} [quality=0.8] - 图片质量 0-1
- * @property {'jpeg'|'png'|'webp'} [format='jpeg'] - 图片格式
- * @property {string} [fileName] - 下载的文件名
+ * @property {boolean} [useCORS=true] - 是否允許跨域
+ * @property {number} [quality=0.8] - 圖片質量 0-1
+ * @property {'jpeg'|'png'|'webp'} [format='jpeg'] - 圖片格式
+ * @property {string} [fileName] - 下載的文件名
  */
 
 export default () => {
@@ -22,10 +22,10 @@ export default () => {
   }
 
   /**
-   * 获取图片URL
-   * @param {HTMLElement} node - DOM节点
-   * @param {ImageOptions} options - 配置选项
-   * @returns {Promise<string>} 图片的data URL
+   * 獲取圖片URL
+   * @param {HTMLElement} node - DOM節點
+   * @param {ImageOptions} options - 配置選項
+   * @returns {Promise<string>} 圖片的data URL
    */
   const getImageUrl = async (node, options = {}) => {
     try {
@@ -34,15 +34,15 @@ export default () => {
       const canvas = await generateCanvas(node, canvasOptions)
       return canvas.toDataURL(`image/${format}`, quality)
     } catch (error) {
-      console.error('获取图片URL失败:', error)
+      console.error('獲取圖片URL失敗:', error)
       throw error
     }
   }
 
   /**
-   * 下载图片
-   * @param {HTMLElement} node - DOM节点
-   * @param {ImageOptions} options - 配置选项
+   * 下載圖片
+   * @param {HTMLElement} node - DOM節點
+   * @param {ImageOptions} options - 配置選項
    * @returns {Promise<void>}
    */
   const downloadImage = async (node, options = {}) => {
@@ -62,7 +62,7 @@ export default () => {
       const base64Data = dataUrl.replace(/^data:image\/\w+;base64,/, '')
       const file = base64ToFile(base64Data, fileName, `image/${format}`)
 
-      // 创建下载链接
+      // 創建下載鏈接
       const link = document.createElement('a')
       link.href = URL.createObjectURL(file)
       link.download = fileName
@@ -72,7 +72,7 @@ export default () => {
       document.body.removeChild(link)
       URL.revokeObjectURL(link.href)
     } catch (error) {
-      console.error('下载图片失败:', error)
+      console.error('下載圖片失敗:', error)
       throw error
     }
   }

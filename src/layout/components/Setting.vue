@@ -5,11 +5,11 @@
   <div class="drawer-wrapper">
     <el-drawer
       v-model="showSettings"
-      title="系统配置"
+      title="系統配置"
       direction="rtl"
       size="310px"
     >
-      <el-divider>布局方式</el-divider>
+      <el-divider>佈局方式</el-divider>
       <div class="layout-wrapper">
         <el-row :gutter="20">
           <el-col @click="handleLayoutMode('Default')" :span="12">
@@ -24,7 +24,7 @@
                 <div class="main-header"></div>
                 <div class="main"></div>
               </div>
-              <div class="introduce">默认</div>
+              <div class="introduce">默認</div>
             </div>
           </el-col>
           <el-col @click="handleLayoutMode('Classic')" :span="12">
@@ -39,7 +39,7 @@
                 <div class="main-header"></div>
                 <div class="main"></div>
               </div>
-              <div class="introduce">经典</div>
+              <div class="introduce">經典</div>
             </div>
           </el-col>
         </el-row>
@@ -55,15 +55,15 @@
                 <div class="main-header"></div>
                 <div class="main"></div>
               </div>
-              <div class="introduce">单栏</div>
+              <div class="introduce">單欄</div>
             </div>
           </el-col>
         </el-row>
       </div>
-      <el-divider>导航菜单</el-divider>
+      <el-divider>導航菜單</el-divider>
       <div class="navbar-menu">
         <div class="navbar-menu-item">
-          <div class="label">导航菜单栏背景色</div>
+          <div class="label">導航菜單欄背景色</div>
           <el-color-picker
             v-model="menuBackgroundColor"
             size="default"
@@ -71,7 +71,7 @@
           />
         </div>
         <div class="navbar-menu-item">
-          <div class="label">导航菜单栏文字颜色</div>
+          <div class="label">導航菜單欄文字顏色</div>
           <el-color-picker
             v-model="menuTextColor"
             size="default"
@@ -79,7 +79,7 @@
           />
         </div>
         <div class="navbar-menu-item">
-          <div class="label">导航菜单激活项背景色</div>
+          <div class="label">導航菜單激活項背景色</div>
           <el-color-picker
             v-model="menuActiveBackgroundColor"
             size="default"
@@ -87,7 +87,7 @@
           />
         </div>
         <div class="navbar-menu-item">
-          <div class="label">导航菜单栏激活项文字颜色</div>
+          <div class="label">導航菜單欄激活項文字顏色</div>
           <el-color-picker
             v-model="menuActiveTextColor"
             size="default"
@@ -95,11 +95,11 @@
           />
         </div>
         <div class="navbar-menu-item">
-          <div class="label">导航菜单(LOGO)</div>
+          <div class="label">導航菜單(LOGO)</div>
           <el-switch v-model="menuLogo" size="default" class="value" />
         </div>
         <div class="navbar-menu-item">
-          <div class="label">侧边菜单宽度(展开时)</div>
+          <div class="label">側邊菜單寬度(展開時)</div>
           <el-input
             v-model="menuWidth"
             type="number"
@@ -113,23 +113,23 @@
           </el-input>
         </div>
         <div class="navbar-menu-item">
-          <div class="label">侧边菜单水平折叠</div>
+          <div class="label">側邊菜單水平折疊</div>
           <el-switch v-model="menuCollapse" size="default" class="value" />
         </div>
         <div class="navbar-menu-item">
-          <div class="label">侧边菜单手风琴</div>
+          <div class="label">側邊菜單手風琴</div>
           <el-switch v-model="menuUniqueOpened" size="default" class="value" />
         </div>
       </div>
       <div class="default-config">
         <el-popconfirm
           @confirm="restoreDefault"
-          confirm-button-text="确认"
+          confirm-button-text="確認"
           cancel-button-text="取消"
-          title="确定要恢复全部配置到默认值吗？"
+          title="確定要恢復全部配置到默認值嗎？"
         >
           <template #reference>
-            <el-button type="info" size="default">恢复默认</el-button>
+            <el-button type="info" size="default">恢復默認</el-button>
           </template>
         </el-popconfirm>
       </div>

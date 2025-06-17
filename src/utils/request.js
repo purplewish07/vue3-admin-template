@@ -2,7 +2,7 @@ import axios from 'axios'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useUserStore } from '@/store/user'
 
-// 业务请求
+// 業務請求
 const request = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
@@ -25,7 +25,7 @@ request.interceptors.request.use(
     return config
   },
   (error) => {
-    console.log('🚀 ~ file: request.js:27 ~ error:', error)
+    console.log('ߚ࠾ file: request.js:27 ~ error:', error)
     // do something with request error
     return Promise.reject(error)
   }
@@ -78,7 +78,7 @@ request.interceptors.response.use(
     }
   },
   (error) => {
-    console.log('🚀 ~ file: request.js:80 ~ error:', error)
+    console.log('ߚ࠾ file: request.js:80 ~ error:', error)
 
     ElMessage({
       message: error.message,
@@ -90,7 +90,7 @@ request.interceptors.response.use(
 )
 
 /**
- * 用于请求 gitee 的数据
+ * 用於請求 gitee 的數據
  */
 const requestA = axios.create({
   baseURL: import.meta.env.VITE_APP_GITEE_BASE_API, // url = base url + request url
@@ -102,7 +102,7 @@ requestA.interceptors.request.use(
     return config
   },
   (error) => {
-    console.log('🚀 ~ file: request.js:103 ~ error:', error)
+    console.log('ߚ࠾ file: request.js:103 ~ error:', error)
     return Promise.reject(error)
   }
 )
@@ -122,7 +122,7 @@ requestA.interceptors.response.use(
     }
   },
   (error) => {
-    console.log('🚀 ~ file: request.js:123 ~ error:', error)
+    console.log('ߚ࠾ file: request.js:123 ~ error:', error)
 
     ElMessage({
       message: error.message,
