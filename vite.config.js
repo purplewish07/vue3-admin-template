@@ -12,7 +12,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 // https://vitejs.dev/config/
 export default (mode) => {
   return defineConfig({
-    base: '/vue3-admin-template/',
+    base: '/', // vue3-admin-template 根路徑
     server: {
       open: true,
       proxy: {
