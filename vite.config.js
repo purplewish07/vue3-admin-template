@@ -17,15 +17,15 @@ export default (mode) => {
       open: true,
       proxy: {
         '/api': {
-          target: 'http://zhihuifanqiechaodan.com', // 生產環境
+          target: 'http://desktop-8gnd4h', // 生產環境
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, '')
         },
-        '/gitee': {
-          target: 'https://raw.githubusercontent.com/zhihuifanqiechaodan',
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/gitee/, '')
-        }
+        // '/gitee': {
+        //   target: 'https://raw.githubusercontent.com/zhihuifanqiechaodan',
+        //   changeOrigin: true,
+        //   rewrite: (path) => path.replace(/^\/gitee/, '')
+        // }
       }
     },
     resolve: {

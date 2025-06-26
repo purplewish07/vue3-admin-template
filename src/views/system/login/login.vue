@@ -54,14 +54,6 @@
         @click.prevent="handleLogin"
         >Login</el-button
       >
-      <div class="tips">
-        <span>Username : admin</span>
-        <span>Password : any</span>
-      </div>
-      <div class="tips">
-        <span style="margin-right: 18px">Username : editor</span>
-        <span>Password : any</span>
-      </div>
     </el-form>
   </div>
 </template>
@@ -70,7 +62,6 @@
 import { nextTick, onMounted, reactive, toRefs } from 'vue'
 import { useUserStore } from '@/store/user'
 import { useRouter, useRoute } from 'vue-router'
-import { addSystemLogin } from '@/api/system'
 
 const router = useRouter()
 const route = useRoute()
@@ -84,11 +75,12 @@ const validateUsername = (rule, value, callback) => {
 }
 
 const validatePassword = (rule, value, callback) => {
-  if (value.length < 6) {
-    callback(new Error('The password can not be less than 6 digits'))
-  } else {
-    callback()
-  }
+  // if (value.length < 5) {
+  //   callback(new Error('The password can not be less than 5 digits'))
+  // } else {
+  //   callback()
+  // }
+  callback()
 }
 
 const state = reactive({
@@ -96,8 +88,8 @@ const state = reactive({
   refUsername: null,
   refPassword: null,
   loginForm: {
-    username: 'admin',
-    password: '123456'
+    username: '',
+    password: ''
   },
   loginRules: {
     username: [
@@ -147,11 +139,17 @@ const handleLogin = () => {
     if (valid) {
       state.loading = true
       const userStore = useUserStore()
-      const { token, userInfo } = await addSystemLogin(state.loginForm)
-      userStore.setToken({ token })
-      userStore.setUserInfo({ userInfo })
-      state.loading = false
-      router.push({ path: state.redirect || '/', query: state.otherQuery })
+      userStore.login(state.loginForm).then(() => {
+        router.push({ path: state.redirect || '/'})
+        state.loading = false
+      }).catch(() => {
+        state.loading = false
+      })
+      //const { token, userInfo } = await addSystemLogin(state.loginForm)
+      // userStore.setToken({ token })
+      // userStore.setUserInfo({ userInfo })
+      // state.loading = false
+      // router.push({ path: state.redirect || '/', query: state.otherQuery })
     } else {
       return false
     }

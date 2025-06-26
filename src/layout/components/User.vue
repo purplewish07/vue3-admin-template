@@ -1,19 +1,21 @@
 <template>
-  <div v-if="userInfo" class="user-container">
+  <div class="user-container">
     <el-dropdown trigger="click">
       <div class="user-wrapper">
         <img
-          :src="
-            userInfo.avatar ||
-            'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80'
-          "
+          :src="avatar+'?imageView2/1/w/80/h/80'"
           class="user-avatar"
         />
-        <div class="user-name">{{ userInfo.name }}</div>
+        <div class="user-name">{{ name }}</div>
       </div>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item @click="logout">Log Out</el-dropdown-item>
+          <router-link to="/changepassword">
+            <el-dropdown-item>
+              修改密碼
+            </el-dropdown-item>
+          </router-link>
+          <el-dropdown-item divided @click="logout">Log Out</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
@@ -29,7 +31,9 @@ const router = useRouter()
 const route = useRoute()
 const userStore = useUserStore()
 const permissionStore = usePermissionStore()
-const userInfo = computed(() => userStore.userInfo)
+const name = computed(() => userStore.name)
+const url= import.meta.env.VITE_APP_BASE_API.replace(/api/, '')
+const avatar = computed(() => url + userStore.avatar)
 
 const logout = async () => {
   await userStore.logout()

@@ -3,7 +3,6 @@
     <el-dropdown ref="refDropdown" @command="handleSetSize">
       <svg-icon class="size" name="size" />
       <template #dropdown>
-        <el-dropdown-menu>
           <el-dropdown-menu>
             <el-dropdown-item
               v-for="item of sizeOptions"
@@ -14,7 +13,6 @@
               {{ item.label }}
             </el-dropdown-item>
           </el-dropdown-menu>
-        </el-dropdown-menu>
       </template>
     </el-dropdown>
   </div>

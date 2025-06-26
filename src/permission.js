@@ -4,17 +4,17 @@ import { usePermissionStore } from '@/store/permission'
 import { ElMessage } from 'element-plus'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import { getCookieItem } from './utils/storage'
+import { getToken } from '@/utils/auth'
 import getPageTitle from './utils/get-page-title'
 
 NProgress.configure({ showSpinner: false })
 
-const whiteList = ['/login', '/auth-redirect']
+const whiteList = ['/login']
 
 router.beforeEach(async (to, from, next) => {
   NProgress.start()
   document.title = getPageTitle(to.meta.title)
-  const hasToken = getCookieItem('token')
+  const hasToken = getToken()
   const userStore = useUserStore()
   const permissionStore = usePermissionStore()
   if (hasToken) {
@@ -22,22 +22,26 @@ router.beforeEach(async (to, from, next) => {
       next({ path: '/' })
       NProgress.done()
     } else {
-      const addRoutes = permissionStore.addRoutes
-      if (addRoutes.length) {
+      const hasPerms = userStore.perms && userStore.perms.length > 0
+      // const addRoutes = permissionStore.addRoutes
+      // if (addRoutes.length) {
+      //   next()
+      //   NProgress.done()
+      // }
+      if (hasPerms) {
         next()
-        NProgress.done()
       } else {
         try {
-          const accessRoutes = await permissionStore.generateRoutes()
+          await userStore.getInfo()
+          const perms = userStore.perms
+          // console.log(perms)
+          const accessRoutes = await permissionStore.generateRoutes(perms)
           accessRoutes.forEach((route) => {
             router.addRoute(route)
           })
           next({ ...to, replace: true })
         } catch (error) {
-          console.log(
-            'ߚ࠾ file: permission.js:77 ~ router.beforeEach ~ error:',
-            error
-          )
+          console.log(error)
           await userStore.resetToken()
           ElMessage.error(error.message || 'Has Error')
           next(`/login?redirect=${to.path}`)

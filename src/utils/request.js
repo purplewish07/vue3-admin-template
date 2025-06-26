@@ -1,12 +1,13 @@
 import axios from 'axios'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useUserStore } from '@/store/user'
+import { getToken } from '@/utils/auth'
 
-// 業務請求
+// create an axios instance
 const request = axios.create({
-  baseURL: import.meta.env.VITE_APP_BASE_API // url = base url + request url
+  baseURL: import.meta.env.VITE_APP_BASE_API, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
-  // timeout: 5000 // request timeout
+  timeout: 5000 // request timeout
 })
 
 // request interceptor
@@ -19,13 +20,16 @@ request.interceptors.request.use(
       // let each request carry token
       // ['X-Token'] is a custom headers key
       // please modify it according to the actual situation
-      config.headers['authorization'] = userStore.token
-      config.headers['userId'] = userStore.userInfo.id
+      config.headers['Authorization'] = 'Bearer ' + userStore.token
+      // console.log(config.headers['Authorization'])
+      // config.headers['authorization'] = userStore.token
+      // config.headers['userId'] = userStore.userInfo.id
+    } else {
+      config.headers['Authorization'] = 'Bearer ' + getToken()
     }
     return config
   },
   (error) => {
-    console.log('ߚ࠾ file: request.js:27 ~ error:', error)
     // do something with request error
     return Promise.reject(error)
   }
@@ -44,37 +48,38 @@ request.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   (response) => {
-    const { code, data, msg } = response.data
+    const res = response.data
+    if(res.code>=200 && res.code<400){
+      return res
+    }
     // if the custom code is not 20000, it is judged as an error.
-    if (code !== 200) {
+    if (res.code === 401) {
+      if(res.msg.indexOf('No active account')!=-1){
       ElMessage({
-        message: msg || 'Error',
-        type: 'error',
-        duration: 5 * 1000
+        message: '用戶名或密碼錯誤',
+          type: 'error',
+          duration: 3 * 1000
       })
-
-      // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
-      if ([50008, 50012, 50014].includes(code)) {
+    }else{
         // to re-login
-        ElMessageBox.confirm(
-          'You have been logged out, you can cancel to stay on this page, or log in again',
-          'Confirm logout',
-          {
-            confirmButtonText: 'Re-Login',
-            cancelButtonText: 'Cancel',
-            type: 'warning'
-          }
-        ).then(() => {
+        ElMessageBox.confirm('認證失敗,請重新登陸.', '確認退出', {
+          confirmButtonText: '重新登陸',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
           const userStore = useUserStore()
-          userStore.resetToken.then(() => {
+          userStore.resetToken().then(() => {
             location.reload()
           })
         })
-      } else {
-        return Promise.reject(new Error(msg || 'Error'))
-      }
-    } else {
-      return data
+      } 
+    } else if (res.code >= 400) {
+      ElMessage({
+        message: res.msg || '請求出錯',
+        type: 'error',
+        duration: 3 * 1000
+      })
+      return Promise.reject(new Error(res.msg || '請求出錯'))
     }
   },
   (error) => {
@@ -89,48 +94,4 @@ request.interceptors.response.use(
   }
 )
 
-/**
- * 用於請求 gitee 的數據
- */
-const requestA = axios.create({
-  baseURL: import.meta.env.VITE_APP_GITEE_BASE_API, // url = base url + request url
-  timeout: 60 * 1000
-})
-
-requestA.interceptors.request.use(
-  (config) => {
-    return config
-  },
-  (error) => {
-    console.log('ߚ࠾ file: request.js:103 ~ error:', error)
-    return Promise.reject(error)
-  }
-)
-
-requestA.interceptors.response.use(
-  (response) => {
-    const { data, status, statusText } = response
-    if (status === 200) {
-      return data
-    } else {
-      ElMessage({
-        msg: statusText || 'Error',
-        type: 'error',
-        duration: 5 * 1000
-      })
-      return false
-    }
-  },
-  (error) => {
-    console.log('ߚ࠾ file: request.js:123 ~ error:', error)
-
-    ElMessage({
-      message: error.message,
-      type: 'error',
-      duration: 5 * 1000
-    })
-    return Promise.reject(error)
-  }
-)
-
-export { request, requestA }
+export default request

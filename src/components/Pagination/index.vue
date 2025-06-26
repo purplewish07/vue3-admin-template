@@ -1,8 +1,8 @@
 <template>
   <el-pagination
-    v-model:page-size="pageSize"
     v-model:current-page="currentPage"
-    :total="props.total"
+    v-model:page-size="pageSize"
+    :total="total"
     :page-sizes="props.pageSizes"
     :layout="props.layout"
     :background="props.background"
@@ -24,19 +24,13 @@ const props = defineProps({
     type: Boolean,
     default: true
   },
+  page: { type: Number, default: 1 },
+  limit: { type: Number, default: 1 },
   pageSizes: {
     type: Array,
     default() {
       return [10, 20, 30, 50]
     }
-  },
-  pageSize: {
-    type: Number,
-    default: 1
-  },
-  currentPage: {
-    type: Number,
-    default: 20
   },
   layout: {
     type: String,
@@ -48,35 +42,27 @@ const props = defineProps({
   }
 })
 
-const emits = defineEmits([
-  'pagination',
-  'update:currentPage',
-  'update:pageSize'
-])
+
+const emit = defineEmits(['update:page', 'update:limit', 'pagination'])
 
 const currentPage = computed({
-  get() {
-    return props.currentPage
-  },
-  set(value) {
-    emits('update:currentPage', value)
-  }
+  get: () => props.page,
+  set: val => emit('update:page', val)
 })
 
 const pageSize = computed({
-  get() {
-    return props.pageSize
-  },
-  set(value) {
-    emits('update:pageSize', value)
-  }
+  get: () => props.limit,
+  set: val => emit('update:limit', val)
 })
 
-const handleSizeChange = (pageSize) => {
-  emits('pagination', { currentPage: props.currentPage, pageSize })
+function handleSizeChange(val) {
+  emit('update:page', 1)
+  emit('update:limit', val)
+  emit('pagination', { page: currentPage.value, limit: val })
 }
-const handleCurrentChange = (currentPage) => {
-  emits('pagination', { currentPage, pageSize: props.pageSize })
+
+function handleCurrentChange(val) {
+  emit('pagination', { page: val, limit: pageSize.value })
 }
 </script>
 

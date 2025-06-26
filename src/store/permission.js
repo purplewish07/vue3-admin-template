@@ -8,7 +8,12 @@ import { useUserStore } from '@/store/user'
  * @param {Object} route 路由對像
  */
 function hasPermission(userPermissions, route) {
-  if (!route.meta) {
+  // if (!route.meta) {
+  //   return true
+  // }
+  if (route.meta && route.meta.userPermissions) {
+    return userPermissions.some(perm => route.meta.userPermissions.includes(perm))
+  } else {
     return true
   }
 
@@ -36,9 +41,9 @@ function hasPermission(userPermissions, route) {
 /**
  * 遞歸過濾異步路由表
  * @param routes asyncRoutes
- * @param permissionIds 用戶權限 {pageIds: [], buttonIds: []}
+ * @param userPermissions 用戶權限
  */
-export function filterAsyncRoutes(routes, permissionIds) {
+export function filterAsyncRoutes(routes, userPermissions) {
   const res = []
 
   routes.forEach((route) => {
@@ -46,12 +51,12 @@ export function filterAsyncRoutes(routes, permissionIds) {
 
     // 檢查是否有子路由有權限
     const hasChildPermission =
-      tmp.children && filterAsyncRoutes(tmp.children, permissionIds).length > 0
+      tmp.children && filterAsyncRoutes(tmp.children, userPermissions).length > 0
 
     // 如果當前路由有權限或者子路由有權限，都應該保留當前路由
-    if (hasPermission(permissionIds, tmp) || hasChildPermission) {
+    if (hasPermission(userPermissions, tmp) || hasChildPermission) {
       if (tmp.children) {
-        tmp.children = filterAsyncRoutes(tmp.children, permissionIds)
+        tmp.children = filterAsyncRoutes(tmp.children, userPermissions)
       }
       res.push(tmp)
     }
@@ -71,13 +76,17 @@ export const usePermissionStore = defineStore('permission', {
     /**
      * @method generateRoutes
      */
-    generateRoutes() {
-      const userStore = useUserStore()
+    generateRoutes(perms) {
       return new Promise((resolve) => {
-        const accessedRoutes = filterAsyncRoutes(
+        let accessedRoutes
+        if (perms.includes('admin')) {
+          // 如果是超級管理員，則返回所有異步路由
+          accessedRoutes = asyncRoutes || []
+        } else {
+          accessedRoutes = filterAsyncRoutes(
           asyncRoutes,
-          userStore.userInfo.permissionIds
-        )
+          perms)
+        }
         this.addRoutes = accessedRoutes
         this.routes = constantRoutes.concat(accessedRoutes)
         resolve(accessedRoutes)

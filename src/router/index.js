@@ -85,10 +85,33 @@ export const constantRoutes = [
         component: () => import('@/views/system/dashboard/dashboard'),
         name: 'dashboard',
         meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
-      }
+      },
     ]
   },
-  ...exampleRouter
+  {
+    path: '/changepassword',
+    component: Layout,
+    redirect: '/changepassword/index',
+    name: 'ChangePW',
+    meta: {
+      title: '修改密碼',
+      icon: ''
+    },
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        name: 'ChangePassword',
+        component: () => import('@/views/system/changepassword.vue'),
+        meta: {
+          title: '修改密碼',
+          noCache: true,
+          icon: ''
+        },
+        hidden: true
+      }
+    ]
+  }
 ]
 
 /**
@@ -96,39 +119,141 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
-    path: '/permission',
+    path: '/system',
     component: Layout,
-    redirect: '/permission/user',
-    meta: { title: 'Permission', icon: 'lock', pageId: 100 },
-    children: [
-      {
+    redirect: '/system/user',
+    name: 'System',
+    meta: {
+      title: '系統管理',
+      icon: 'example',
+      perms: ['system_manage'],
+      pageId: 100
+    },
+    children: [{
         path: 'user',
-        component: () => import('@/views/system/permission/user'),
-        name: 'user',
+        name: 'User',
+        component: () => import('@/views/system/user'),
         meta: {
-          title: 'User',
-          icon: 'dashboard',
-          pageId: 101,
-          buttonIds: [{ buttonId: 1010, buttonText: '添加用戶' }]
+          title: '用戶管理',
+          icon: 'user',
+          perms: ['user_manage'],
+          pageId: 101
+        }
+      },
+      {
+        path: 'organization',
+        name: 'Organization',
+        component: () => import('@/views/system/organization'),
+        meta: {
+          title: '部門管理',
+          icon: 'tree',
+          perms: ['org_manage'],
+          pageId: 101
+        }
+      },
+      {
+        path: 'perm',
+        name: 'Perm',
+        component: () => import('@/views/system/perm'),
+        meta: {
+          title: '權限菜單',
+          icon: 'example',
+          perms: ['perm_manage']
         }
       },
       {
         path: 'role',
-        component: () => import('@/views/system/permission/role'),
-        name: 'role',
+        name: 'Role',
+        component: () => import('@/views/system/role'),
         meta: {
-          title: 'Role',
-          icon: 'dashboard',
-          pageId: 102,
-          buttonIds: [
-            { buttonId: 1020, buttonText: '創建' },
-            { buttonId: 1021, buttonText: '編輯' },
-            { buttonId: 1022, buttonText: '刪除' }
-          ]
+          title: '角色管理',
+          icon: 'lock',
+          perms: ['role_manage']
         }
+      },
+      {
+        path: 'position',
+        name: 'Postion',
+        component: () => import('@/views/system/position'),
+        meta: {
+          title: '崗位管理',
+          icon: 'position',
+          perms: ['position_manage']
+        }
+      },
+      {
+        path: 'file',
+        name: 'File',
+        component: () => import('@/views/system/file'),
+        meta: {
+          title: '文件庫',
+          icon: 'documentation',
+          perms: ['file_room']
+        }
+      },
+    ]
+  },
+  {
+    path: '/develop',
+    component: Layout,
+    redirect: '/develop/perm',
+    name: 'Develop',
+    meta: {
+      title: '開發配置',
+      icon: 'example',
+      perms: ['dev_set']
+    },
+    children: [{
+        path: 'form-gen-link',
+        component: Layout,
+        children: [{
+          path: 'https://jakhuang.github.io/form-generator/',
+          meta: {
+            title: '表單設計器',
+            icon: 'link',
+            perms: ['dev_form_gen']
+          }
+        }]
+      },
+      {
+        path: 'docs',
+        component: Layout,
+        children: [{
+          path: import.meta.env.VITE_APP_BASE_API + '/docs/',
+          meta: {
+            title: '接口文檔',
+            icon: 'link',
+            perms: ['dev_docs']
+          }
+        }]
+      },
+      {
+        path: 'swagger',
+        component: Layout,
+        children: [{
+          path: import.meta.env.VITE_APP_BASE_API + '/swagger/',
+          meta: {
+            title: 'Swagger文檔',
+            icon: 'link',
+            perms: ['dev_docs']
+          }
+        }]
+      },
+      {
+        path: 'admin-link',
+        component: Layout,
+        children: [{
+          path: import.meta.env.VITE_APP_BASE_API + '/admin/',
+          meta: {
+            title: 'Django後台',
+            icon: 'link',
+            perms: ['dev_admin']
+          }
+        }]
       }
     ]
-  }
+  },
+  ...exampleRouter,
 ]
 
 const router = createRouter({
